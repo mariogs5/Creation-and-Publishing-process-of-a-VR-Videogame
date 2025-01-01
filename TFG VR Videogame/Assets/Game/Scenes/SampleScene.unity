@@ -1324,8 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6616d43bdad400044a669132069f3599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 3
-  columns: 5
+  maxRows: 3
+  maxColumns: 5
   tilePrefab: {fileID: 8549973193657122635, guid: ccf68feec90cb764e9ad648f988c28b2,
     type: 3}
   spacing: 0.35
