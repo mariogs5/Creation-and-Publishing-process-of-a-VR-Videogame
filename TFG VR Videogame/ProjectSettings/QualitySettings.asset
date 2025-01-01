@@ -55,7 +55,9 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
+    - Android
   - serializedVersion: 3
     name: Balanced
     pixelLightCount: 1
@@ -105,7 +107,9 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
+    - Android
   - serializedVersion: 3
     name: High Fidelity
     pixelLightCount: 2
@@ -155,7 +159,9 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
+    - Android
   - serializedVersion: 3
     name: VR
     pixelLightCount: 2
@@ -208,7 +214,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
-    Android: 1
+    Android: 3
     CloudRendering: 2
     GameCoreScarlett: 2
     GameCoreXboxOne: 2
@@ -218,7 +224,7 @@ QualitySettings:
     PS5: 2
     Server: 0
     Stadia: 2
-    Standalone: 2
+    Standalone: 3
     WebGL: 1
     Windows Store Apps: 2
     XboxOne: 2
