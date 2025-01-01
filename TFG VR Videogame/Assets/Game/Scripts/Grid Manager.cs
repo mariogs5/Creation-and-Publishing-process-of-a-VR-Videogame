@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private GameObject parent;
     [SerializeField, Range(1, 3)] private int rows;
     [SerializeField, Range(1, 5)] private int columns;
 
@@ -22,22 +21,22 @@ public class GridManager : MonoBehaviour
 
         // Calculate the grid Size
         float startX = -(columns - 1) * spacing / 2f;
-        float startY = -(rows - 1) * spacing / 2f;
+        float startZ = (rows - 1) * spacing / 2f;
 
         // Instantiate Tiles
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < columns; col++)
             {
-                Vector3 position = new Vector3(startX + col * spacing, startY + row * spacing, 0) + transform.position;
+                Vector3 position = new Vector3(startX + col * spacing, 0, startZ - row * spacing) + transform.position;
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{col})";
 
                 // Color Test
-                Color randomColor = new Color(Random.value, Random.value, Random.value);
-                Material randomMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                randomMaterial.color = randomColor;
-                tile.GetComponent<Renderer>().material = randomMaterial;
+                //Color randomColor = new Color(Random.value, Random.value, Random.value);
+                //Material randomMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                //randomMaterial.color = randomColor;
+                //tile.GetComponent<Renderer>().material = randomMaterial;
             }
         }
     }
