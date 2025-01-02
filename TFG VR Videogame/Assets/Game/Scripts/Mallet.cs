@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Mallet : MonoBehaviour
 {
-    public Action onHit {  get; set; }
+    public Action OnHit {  get; set; }
 
     void Start()
     {
@@ -19,6 +19,6 @@ public class Mallet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Mole") onHit?.Invoke();
+        if(collision.gameObject.tag == "Mole") OnHit?.Invoke();
     }
 }

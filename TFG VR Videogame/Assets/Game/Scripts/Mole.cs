@@ -8,7 +8,10 @@ public class Mole : MonoBehaviour
 
     void Start()
     {
-        mallet.onHit += Kill;
+        if(mallet != null)
+        {
+            mallet.OnHit += Kill;
+        }
     }
 
     void Update()
@@ -18,15 +21,25 @@ public class Mole : MonoBehaviour
 
     private void Kill()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        if (transform.parent != null)
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()
     {
-        mallet.onHit += Kill;
+        if (mallet != null)
+        {
+            mallet.OnHit += Kill;
+        }
     }
     private void OnDisable()
     {
-        mallet.onHit -= Kill;
+        if (mallet != null)
+        {
+            mallet.OnHit -= Kill;
+        }
     }
 }
