@@ -5,20 +5,13 @@ using UnityEngine;
 
 public class Mallet : MonoBehaviour
 {
-    public Action OnHit {  get; set; }
-
-    void Start()
+    //Mallet Code Reworked 
+    private void Start()
     {
         
     }
-
-    void Update()
+    private void Update()
     {
         
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Mole") OnHit?.Invoke();
     }
 }

@@ -1,45 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mole : MonoBehaviour
 {
-    [SerializeField] private Mallet mallet;
+    public static Action OnHit {  get; set; }
 
-    void Start()
+    private void Awake()
     {
-        if(mallet != null)
-        {
-            mallet.OnHit += Kill;
-        }
+        //Do animation
     }
 
     void Update()
     {
-        
+        //Timer to lose points
     }
 
-    private void Kill()
+    private void OnCollisionEnter(Collision collision)
     {
-        gameObject.SetActive(false);
-        if (transform.parent != null)
+        if(collision.gameObject.tag == "Mallet")
         {
-            transform.parent.gameObject.SetActive(false);
-        }
-    }
-
-    private void OnEnable()
-    {
-        if (mallet != null)
-        {
-            mallet.OnHit += Kill;
-        }
-    }
-    private void OnDisable()
-    {
-        if (mallet != null)
-        {
-            mallet.OnHit -= Kill;
+            gameObject.SetActive(false);
+            OnHit?.Invoke();
         }
     }
 }

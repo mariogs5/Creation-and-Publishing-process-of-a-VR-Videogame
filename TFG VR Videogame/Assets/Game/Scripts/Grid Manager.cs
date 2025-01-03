@@ -15,7 +15,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private List<GameObject> slotPool;
 
     // RNG Vars
-    [SerializeField] private float interval = 5.0f;
+    [SerializeField] private float interval;
     private int maxNumber;
     private bool isGenerating;
     private int newNumber;
@@ -29,23 +29,8 @@ public class GridManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Comma))
-        //{
-        //    StartGenerating();
-        //}
 
-        //if (Input.GetKeyDown(KeyCode.Period))
-        //{
-        //    StopGenerating();
-        //}
     }
-
-    //private void UpdateGrid(int newRows, int newColumns)
-    //{
-    //    //rows = newRows;
-    //    //columns = newColumns;
-    //    //GenerateGrid();
-    //}
 
     #region Inspector Buttons (Generate & Delete Tiles GO)
     public void GenerateGrid()
@@ -93,7 +78,6 @@ public class GridManager : MonoBehaviour
 
     private void GenerateRandomNumber()
     {
-        // Verifica si todos los GameObjects están activos
         if (slotPool.TrueForAll(go => go.activeSelf))
         {
             StopGenerating();
