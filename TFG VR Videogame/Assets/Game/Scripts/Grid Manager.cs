@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour
     // Model Vars
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private List<GameObject> slotPool;
+    private Vector3 tileSize;
 
     // RNG Vars
     [SerializeField] private float interval;
@@ -37,16 +38,21 @@ public class GridManager : MonoBehaviour
     {
         DeleteGrid();
 
-        // Calculate the grid Size
-        float startX = -(columns - 1) * spacing / 2f;
-        float startZ = (rows - 1) * spacing / 2f;
+        CalculateTileSize();
 
-        // Instantiate Tiles
+        float startX = -(columns - 1) * (tileSize.x + spacing) / 2f;
+        float startZ = (rows - 1) * (tileSize.z + spacing) / 2f;
+
         for (int row = 0; row < rows; row++)
         {
             for (int column = 0; column < columns; column++)
             {
-                Vector3 position = new Vector3(startX + column * spacing, 0, startZ - row * spacing) + transform.position;
+                Vector3 position = new Vector3(
+                    startX + column * (tileSize.x + spacing),
+                    0,
+                    startZ - row * (tileSize.z + spacing)
+                ) + transform.position;
+
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
                 tile.SetActive(false);
@@ -100,6 +106,30 @@ public class GridManager : MonoBehaviour
             CancelInvoke(nameof(GenerateRandomNumber));
             isGenerating = false;
             Debug.Log("Stopping RNG Slot Number Generation.");
+        }
+    }
+    #endregion
+
+    #region Helper Methods
+    private void CalculateTileSize()
+    {
+        Renderer renderer = tilePrefab.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            tileSize = renderer.bounds.size;
+        }
+        else
+        {
+            Collider collider = tilePrefab.GetComponent<Collider>();
+            if (collider != null)
+            {
+                tileSize = collider.bounds.size;
+            }
+            else
+            {
+                Debug.LogError("Tile Prefab must have a Renderer or Collider to calculate its size.");
+                tileSize = Vector3.one;
+            }
         }
     }
     #endregion
