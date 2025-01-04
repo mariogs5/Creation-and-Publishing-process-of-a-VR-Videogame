@@ -55,7 +55,7 @@ public class GridManager : MonoBehaviour
 
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
-                tile.SetActive(false);
+                //tile.SetActive(false);
                 slotPool.Add(tile);
             }
         }
