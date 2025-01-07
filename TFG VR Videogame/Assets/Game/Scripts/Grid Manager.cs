@@ -28,11 +28,6 @@ public class GridManager : MonoBehaviour
         StartGenerating();
     }
 
-    private void Update()
-    {
-
-    }
-
     #region Inspector Buttons (Generate & Delete Tiles GO)
     public void GenerateGrid()
     {
@@ -47,15 +42,11 @@ public class GridManager : MonoBehaviour
         {
             for (int column = 0; column < columns; column++)
             {
-                Vector3 position = new Vector3(
-                    startX + column * (tileSize.x + spacing),
-                    0,
-                    startZ - row * (tileSize.z + spacing)
-                ) + transform.position;
+                Vector3 position = new Vector3(startX + column * (tileSize.x + spacing), 0, startZ - row * (tileSize.z + spacing)) + transform.position;
 
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
-                //tile.SetActive(false);
+                tile.SetActive(false);
                 slotPool.Add(tile);
             }
         }
@@ -127,8 +118,8 @@ public class GridManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Tile Prefab must have a Renderer or Collider to calculate its size.");
-                tileSize = Vector3.one;
+                Debug.Log("Tile Prefab must have a Renderer or Collider to calculate its size.");
+                tileSize = new Vector3(0.2f, 0.5f, 0.2f);
             }
         }
     }
