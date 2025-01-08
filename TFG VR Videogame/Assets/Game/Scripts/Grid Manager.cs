@@ -46,6 +46,24 @@ public class GridManager : MonoBehaviour
 
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
+
+                // Prueba de codigo
+                //Transform[] children = tile.GetComponentsInChildren<Transform>(true);
+
+                //if (children.Length > 2)
+                //{
+
+                //    GameObject child1 = children[1].gameObject;
+                //    GameObject child2 = children[2].gameObject;
+
+                //    child1.SetActive(false);
+                //    child2.SetActive(false);
+                //}
+                //else
+                //{
+                //    tile.SetActive(false);
+                //}
+
                 tile.SetActive(false);
                 slotPool.Add(tile);
             }
@@ -87,6 +105,9 @@ public class GridManager : MonoBehaviour
         } while (slotPool[newNumber].activeSelf);
 
         Debug.Log("Number Generated: " + newNumber);
+
+        //Slot slot = slotPool[newNumber].GetComponent<Slot>();
+        //slot.OnActivate();
         slotPool[newNumber].SetActive(true);
     }
 

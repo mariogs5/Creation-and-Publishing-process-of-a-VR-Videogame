@@ -1,15 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mole : MonoBehaviour
+public class Vegetable : MonoBehaviour
 {
-    public static Action OnHit {  get; set; }
-
     private Color startColor = Color.white;
-    private Color endColor = Color.red;    
-    private float duration = 2f;        
+    private Color endColor = Color.green;
+    private float duration = 2f;
 
     private Renderer objectRenderer;
     private float timer;
@@ -30,12 +27,10 @@ public class Mole : MonoBehaviour
 
         ActivateColorChange();
     }
-
     private void OnEnable()
     {
         transform.position = initialPos;
 
-        //Do animation
         if (!firstIteration)
         {
             ActivateColorChange();
@@ -44,9 +39,6 @@ public class Mole : MonoBehaviour
 
     void Update()
     {
-        //Timer to lose points
-
-
         if (isActive)
         {
             timer += Time.deltaTime;
@@ -71,15 +63,5 @@ public class Mole : MonoBehaviour
         objectRenderer.material.color = startColor;
         isActive = true;
         timer = 0f;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Mallet")
-        {
-            //transform.parent.gameObject.SetActive(false);
-            gameObject.SetActive(false);
-            OnHit?.Invoke();
-        }
     }
 }

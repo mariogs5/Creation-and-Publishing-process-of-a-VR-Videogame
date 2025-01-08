@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 474092062746152453}
   - component: {fileID: 7922031710707735864}
   - component: {fileID: 7254402431488576293}
+  - component: {fileID: 538436907485810005}
   m_Layer: 0
   m_Name: Vegetable
   m_TagString: Vegetable
@@ -540,3 +541,15 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &538436907485810005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8883532587699630344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780cc3562396f604bad418299d1ed11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

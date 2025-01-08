@@ -1,37 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Metadata;
 
 public class Slot : MonoBehaviour
 {
     private float probability = 0.5f;
 
-    private bool noChilds = true;
-
     private GameObject child1;
     private GameObject child2;
 
-
-
-
-    Transform[] children;
-
-    private void Start()
+    private void Awake()
     {
-        children = GetComponentsInChildren<Transform>(true);
+        child1 = transform.GetChild(0).gameObject;
+        child2 = transform.GetChild(1).gameObject;
 
-        if (children.Length > 2)
-        {
-            noChilds = false;
-
-            child1 = children[1].gameObject;
-            child2 = children[2].gameObject;
-        }
+        child1.SetActive(false);
+        child2.SetActive(false);
     }
 
     private void OnEnable()
     {
-        if (!noChilds)
+        if (child1 != null && child2 != null)
         {
             child1.SetActive(false);
             child2.SetActive(false);
