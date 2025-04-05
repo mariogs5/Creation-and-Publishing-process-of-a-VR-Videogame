@@ -46,7 +46,6 @@ public class Mole : MonoBehaviour
     {
         //Timer to lose points
 
-
         if (isActive)
         {
             timer += Time.deltaTime;

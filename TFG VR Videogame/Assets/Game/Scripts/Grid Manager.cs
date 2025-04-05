@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
     {
         isGenerating = false;
         maxNumber = rows * columns;
-        StartGenerating();
+        StartGeneratingNumbers();
     }
 
     #region Inspector Buttons (Generate & Delete Tiles GO)
@@ -81,7 +81,7 @@ public class GridManager : MonoBehaviour
     #endregion
 
     #region Number Generation
-    private void StartGenerating()
+    private void StartGeneratingNumbers()
     {
         if (!isGenerating)
         {
@@ -91,11 +91,21 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    private void StopGeneratingNumbers()
+    {
+        if (isGenerating)
+        {
+            CancelInvoke(nameof(GenerateRandomNumber));
+            isGenerating = false;
+            Debug.Log("Stopping RNG Slot Number Generation.");
+        }
+    }
+
     private void GenerateRandomNumber()
     {
         if (slotPool.TrueForAll(go => go.activeSelf))
         {
-            StopGenerating();
+            StopGeneratingNumbers();
             return;
         }
 
@@ -109,16 +119,6 @@ public class GridManager : MonoBehaviour
         //Slot slot = slotPool[newNumber].GetComponent<Slot>();
         //slot.OnActivate();
         slotPool[newNumber].SetActive(true);
-    }
-
-    private void StopGenerating()
-    {
-        if (isGenerating)
-        {
-            CancelInvoke(nameof(GenerateRandomNumber));
-            isGenerating = false;
-            Debug.Log("Stopping RNG Slot Number Generation.");
-        }
     }
     #endregion
 

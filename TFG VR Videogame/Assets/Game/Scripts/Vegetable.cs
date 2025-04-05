@@ -55,8 +55,8 @@ public class Vegetable : MonoBehaviour
             {
                 firstIteration = false;
                 isActive = false;
-                transform.parent.gameObject.SetActive(false);
                 //gameObject.SetActive(false);
+                transform.parent.gameObject.SetActive(false);
             }
         }
     }
