@@ -18,8 +18,8 @@ public class Slot : MonoBehaviour
     private void Awake()
     {
         // New
-        //molePrefab = Resources.Load<GameObject>("Prefabs/Mole");
-        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/Vegetable");
+        //molePrefab = Resources.Load<GameObject>("Prefabs/New Mole Test");
+        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/New Vegetable");
 
         // Old
         child1 = transform.GetChild(0).gameObject;
@@ -65,11 +65,13 @@ public class Slot : MonoBehaviour
         {
             if (Random.value < probability)
             {
-                Instantiate(molePrefab, gameObject.transform.position, Quaternion.identity);
+                Debug.Log("Instantiate Mole " + molePrefab);
+                Instantiate(molePrefab, transform.position, Quaternion.identity);
             }
             else
             {
-                Instantiate(vegetablePrefab, gameObject.transform.position, Quaternion.identity);
+                Debug.Log("Instantiate Vegetable " + vegetablePrefab);
+                Instantiate(vegetablePrefab, transform.position, Quaternion.identity);
             }
         }
         else

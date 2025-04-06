@@ -72,7 +72,8 @@ public class Vegetable : MonoBehaviour
                 firstIteration = false;
                 isActive = false;
                 //gameObject.SetActive(false);
-                transform.parent.gameObject.SetActive(false);
+                transform.parent.gameObject.SetActive(false); // Deactivate the slot
+                //Destroy(gameObject); // New Behavior
             }
         }
     }
@@ -96,6 +97,7 @@ public class Vegetable : MonoBehaviour
         {
             gameObject.SetActive(false);
             OnDunk?.Invoke();
+            //Destroy(gameObject); // New Behavior
         }
     }
 
