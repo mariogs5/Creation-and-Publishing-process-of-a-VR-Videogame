@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    // Grid Vars
+    // --- Grid Vars --- \\
     [SerializeField, Range(1, 3)] private int rows;
     [SerializeField, Range(1, 5)] private int columns;
     [SerializeField] private float spacing = 1.5f;  // Spacing between tiles
 
-    // Model Vars
+    // --- Model Vars --- \\
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private List<GameObject> slotPool;
     private Vector3 tileSize;
 
-    // RNG Vars
+    // --- RNG Vars --- \\
     [SerializeField] private float interval;
     private int maxNumber;
     private bool isGenerating;
@@ -46,23 +46,6 @@ public class GridManager : MonoBehaviour
 
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
-
-                // Prueba de codigo
-                //Transform[] children = tile.GetComponentsInChildren<Transform>(true);
-
-                //if (children.Length > 2)
-                //{
-
-                //    GameObject child1 = children[1].gameObject;
-                //    GameObject child2 = children[2].gameObject;
-
-                //    child1.SetActive(false);
-                //    child2.SetActive(false);
-                //}
-                //else
-                //{
-                //    tile.SetActive(false);
-                //}
 
                 tile.SetActive(false);
                 slotPool.Add(tile);

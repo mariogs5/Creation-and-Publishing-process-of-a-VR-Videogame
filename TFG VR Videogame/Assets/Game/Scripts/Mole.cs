@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class Mole : MonoBehaviour
 {
-    public static Action OnHit {  get; set; }
+    // --- Events --- \\
+    public static Action OnHit { get; set; }
 
-    private Color startColor = Color.white;
-    private Color endColor = Color.red;    
-    private float duration = 2f;        
-
+    // --- Components --- \\
     private Renderer objectRenderer;
+
+    // --- Color --- \\
+    private Color startColor = Color.white;
+    private Color endColor = Color.red;
+    private float duration = 2f;
+
+    // --- GO Vars --- \\
     private float timer;
     private bool isActive = false;
     private bool firstIteration = true;
-
     private Vector3 initialPos;
+
 
     private void Awake()
     {

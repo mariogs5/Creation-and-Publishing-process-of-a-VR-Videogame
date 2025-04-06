@@ -5,6 +5,11 @@ using static Unity.VisualScripting.Metadata;
 
 public class Slot : MonoBehaviour
 {
+    // --- Prefab --- \\
+    private GameObject molePrefab;
+    private GameObject vegetablePrefab;
+
+    // --- RNG Vars --- \\
     private float probability = 0.5f;
 
     private GameObject child1;
@@ -12,6 +17,11 @@ public class Slot : MonoBehaviour
 
     private void Awake()
     {
+        // New
+        //molePrefab = Resources.Load<GameObject>("Prefabs/Mole");
+        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/Vegetable");
+
+        // Old
         child1 = transform.GetChild(0).gameObject;
         child2 = transform.GetChild(1).gameObject;
 
@@ -20,6 +30,12 @@ public class Slot : MonoBehaviour
     }
 
     private void OnEnable()
+    {
+        OldEnable();
+        //NewEnable();
+    }
+
+    private void OldEnable()
     {
         if (child1 != null && child2 != null)
         {
@@ -35,6 +51,25 @@ public class Slot : MonoBehaviour
             {
                 child1.SetActive(false);
                 child2.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.Log("There are no Childs in Slot Prefab");
+        }
+    }
+
+    private void NewEnable()
+    {
+        if (molePrefab != null && vegetablePrefab != null)
+        {
+            if (Random.value < probability)
+            {
+                Instantiate(molePrefab, gameObject.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(vegetablePrefab, gameObject.transform.position, Quaternion.identity);
             }
         }
         else
