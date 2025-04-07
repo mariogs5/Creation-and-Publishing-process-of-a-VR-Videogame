@@ -21,6 +21,9 @@ public class GridManager : MonoBehaviour
     private bool isGenerating;
     private int newNumber;
 
+    private Queue<int> numberQueue = new Queue<int>(3);
+    private HashSet<int> numberSet = new HashSet<int>();
+
     private void Start()
     {
         isGenerating = false;
@@ -47,7 +50,7 @@ public class GridManager : MonoBehaviour
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, transform);
                 tile.name = $"Slot ({row},{column})";
 
-                tile.SetActive(false);
+                //tile.SetActive(false);
                 slotPool.Add(tile);
             }
         }
@@ -86,22 +89,41 @@ public class GridManager : MonoBehaviour
 
     private void GenerateRandomNumber()
     {
-        if (slotPool.TrueForAll(go => go.activeSelf))
-        {
-            StopGeneratingNumbers();
-            return;
-        }
+        // Old 
+        //if (slotPool.TrueForAll(go => go.activeSelf))
+        //{
+        //    StopGeneratingNumbers();
+        //    return;
+        //}
 
+        //do
+        //{
+        //    newNumber = Random.Range(0, maxNumber);
+        //} while (slotPool[newNumber].activeSelf);
+
+        //Debug.Log("Number Generated: " + newNumber);
+
+        //slotPool[newNumber].SetActive(true);
+
+        // New 
         do
         {
             newNumber = Random.Range(0, maxNumber);
-        } while (slotPool[newNumber].activeSelf);
+        } while (numberSet.Contains(newNumber));
+
+        // Update data structures
+        numberQueue.Enqueue(newNumber);
+        numberSet.Add(newNumber);
+
+        if (numberQueue.Count > 3)
+        {
+            int oldestNumber = numberQueue.Dequeue();
+            numberSet.Remove(oldestNumber);
+        }
 
         Debug.Log("Number Generated: " + newNumber);
 
-        //Slot slot = slotPool[newNumber].GetComponent<Slot>();
-        //slot.OnActivate();
-        slotPool[newNumber].SetActive(true);
+        slotPool[newNumber].GetComponent<NewSlot>().SpawnObject();
     }
     #endregion
 

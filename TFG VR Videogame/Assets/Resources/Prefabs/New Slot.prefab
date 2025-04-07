@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1727678278050002593}
-  - component: {fileID: 2537499338003360789}
+  - component: {fileID: -2379354387236220423}
   m_Layer: 0
   m_Name: New Slot
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2537499338003360789
+--- !u!114 &-2379354387236220423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6912943901606475568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54ab39f98e64754ebc55a4ad2808669, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b8fe71e56bf33a429264d41ca28162d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
