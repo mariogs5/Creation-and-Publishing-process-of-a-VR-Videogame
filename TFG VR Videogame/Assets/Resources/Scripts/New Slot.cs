@@ -14,8 +14,8 @@ public class NewSlot : MonoBehaviour
 
     private void Awake()
     {
-        molePrefab = Resources.Load<GameObject>("Prefabs/New Mole Test");
-        vegetablePrefab = Resources.Load<GameObject>("Prefabs/New Vegetable");
+        molePrefab = Resources.Load<GameObject>("Prefabs/Test/New Mole Test");
+        vegetablePrefab = Resources.Load<GameObject>("Prefabs/Test/New Vegetable");
     }
 
     private void OnEnable()
