@@ -22,11 +22,11 @@ public class NewMole : MonoBehaviour
 
     private void Awake()
     {
-        objectRenderer = GetComponent<Renderer>();
-        if (objectRenderer != null)
-        {
-            objectRenderer.material.color = startColor;
-        }
+        //objectRenderer = GetComponent<Renderer>();
+        //if (objectRenderer != null)
+        //{
+        //    objectRenderer.material.color = startColor;
+        //}
 
         isActive = true;    
 
@@ -43,8 +43,8 @@ public class NewMole : MonoBehaviour
 
             if (timer <= duration)
             {
-                float t = timer / duration;
-                objectRenderer.material.color = Color.Lerp(startColor, endColor, t);
+                //float t = timer / duration;
+                //objectRenderer.material.color = Color.Lerp(startColor, endColor, t);
             }
             else
             {
@@ -56,7 +56,7 @@ public class NewMole : MonoBehaviour
 
     public void ActivateColorChange()
     {
-        objectRenderer.material.color = startColor;
+        //objectRenderer.material.color = startColor;
         isActive = true;
         timer = 0f;
     }

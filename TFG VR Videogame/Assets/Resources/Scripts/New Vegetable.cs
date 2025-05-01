@@ -25,11 +25,11 @@ public class NewVegetable : MonoBehaviour
 
     private void Awake()
     {
-        objectRenderer = GetComponent<Renderer>();
-        if (objectRenderer != null)
-        {
-            objectRenderer.material.color = startColor;
-        }
+        //objectRenderer = GetComponent<Renderer>();
+        //if (objectRenderer != null)
+        //{
+        //    objectRenderer.material.color = startColor;
+        //}
 
         rb = GetComponent<Rigidbody>();
         grabInteractable = GetComponent<XRGrabInteractable>();
@@ -52,8 +52,8 @@ public class NewVegetable : MonoBehaviour
 
             if (timer <= duration)
             {
-                float t = timer / duration;
-                objectRenderer.material.color = Color.Lerp(startColor, endColor, t);
+                //float t = timer / duration;
+                //objectRenderer.material.color = Color.Lerp(startColor, endColor, t);
             }
             else
             {
@@ -71,7 +71,7 @@ public class NewVegetable : MonoBehaviour
 
     public void ActivateColorChange()
     {
-        objectRenderer.material.color = startColor;
+        //objectRenderer.material.color = startColor;
         isActive = true;
         timer = 0f;
     }

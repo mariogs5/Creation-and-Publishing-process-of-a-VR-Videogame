@@ -14,8 +14,13 @@ public class NewSlot : MonoBehaviour
 
     private void Awake()
     {
+        // --- Test Prefabs --- \\
         molePrefab = Resources.Load<GameObject>("Prefabs/Test/New Mole Test");
         vegetablePrefab = Resources.Load<GameObject>("Prefabs/Test/New Vegetable");
+
+        // --- Final Models --- \\
+        //molePrefab = Resources.Load<GameObject>("Prefabs/Final/Mole");
+        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/Final/Naboncio");
     }
 
     private void OnEnable()
@@ -27,15 +32,17 @@ public class NewSlot : MonoBehaviour
     {
         if (molePrefab != null && vegetablePrefab != null)
         {
+            Vector3 pos = new Vector3(transform.position.x, (transform.position.y - (float)0.3), transform.position.z);
+
             if (Random.value < probability)
             {
                 Debug.Log("Instantiate Mole ");
-                Instantiate(molePrefab, transform.position, Quaternion.identity);
+                Instantiate(molePrefab, pos, Quaternion.identity);
             }
             else
             {
                 Debug.Log("Instantiate Vegetable ");
-                Instantiate(vegetablePrefab, transform.position, Quaternion.identity);
+                Instantiate(vegetablePrefab, pos, Quaternion.identity);
             }
         }
         else
