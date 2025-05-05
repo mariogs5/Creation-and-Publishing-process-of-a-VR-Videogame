@@ -15,12 +15,12 @@ public class NewSlot : MonoBehaviour
     private void Awake()
     {
         // --- Test Prefabs --- \\
-        molePrefab = Resources.Load<GameObject>("Prefabs/Test/New Mole Test");
-        vegetablePrefab = Resources.Load<GameObject>("Prefabs/Test/New Vegetable");
+        //molePrefab = Resources.Load<GameObject>("Prefabs/Test/New Mole Test");
+        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/Test/New Vegetable");
 
         // --- Final Models --- \\
-        //molePrefab = Resources.Load<GameObject>("Prefabs/Final/Mole");
-        //vegetablePrefab = Resources.Load<GameObject>("Prefabs/Final/Naboncio");
+        molePrefab = Resources.Load<GameObject>("Prefabs/Final/Mole");
+        vegetablePrefab = Resources.Load<GameObject>("Prefabs/Final/Naboncio");
     }
 
     private void OnEnable()
