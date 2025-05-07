@@ -11,8 +11,8 @@ public class UI_Points : MonoBehaviour
 
     private void OnEnable()
     {
-        Mole.OnHit += UpdateScore;
-        Vegetable.OnDunk += UpdateScore;
+        NewMole.OnHit += UpdateScore;
+        NewVegetable.OnDunk += UpdateScore;
     }
 
     private void UpdateScore()
