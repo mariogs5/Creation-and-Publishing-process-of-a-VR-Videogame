@@ -12,6 +12,9 @@ public class NewSlot : MonoBehaviour
     // --- RNG Vars --- \\
     private float probability = 0.5f;
 
+    Vector3 posMole;
+    Vector3 posVeg;
+
     private void Awake()
     {
         // --- Test Prefabs --- \\
@@ -21,6 +24,9 @@ public class NewSlot : MonoBehaviour
         // --- Final Models --- \\
         molePrefab = Resources.Load<GameObject>("Prefabs/Final/Mole");
         vegetablePrefab = Resources.Load<GameObject>("Prefabs/Final/Naboncio");
+
+        posMole = new Vector3(transform.position.x, (transform.position.y - (float)0.3), transform.position.z);
+        posVeg = new Vector3(transform.position.x, (transform.position.y - (float)0.35), transform.position.z);
     }
 
     private void OnEnable()
@@ -32,17 +38,15 @@ public class NewSlot : MonoBehaviour
     {
         if (molePrefab != null && vegetablePrefab != null)
         {
-            Vector3 pos = new Vector3(transform.position.x, (transform.position.y - (float)0.3), transform.position.z);
-
             if (Random.value < probability)
             {
                 Debug.Log("Instantiate Mole ");
-                Instantiate(molePrefab, pos, Quaternion.identity);
+                Instantiate(molePrefab, posMole, transform.rotation);
             }
             else
             {
                 Debug.Log("Instantiate Vegetable ");
-                Instantiate(vegetablePrefab, pos, Quaternion.identity);
+                Instantiate(vegetablePrefab, posVeg, transform.rotation);
             }
         }
         else
