@@ -10,7 +10,7 @@ public enum Mode
     Survival,
 }
 
-public class GameManager : MonoBehaviour
+public class MySceneManager : MonoBehaviour
 {
     [Header("Mode Settings")]
     public Mode currentMode;
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Renderer fadeQuad;
     [Tooltip("How long the fade in/out takes.")]
     public float fadeDuration = 1f;
+    public bool autoSceneChange = false;
 
     private Material fadeMaterial;
     private Color fadeColor;
@@ -46,14 +47,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timer += Time.unscaledDeltaTime;
-        if (timer >= autoChangeInterval)
+        if (autoSceneChange)
         {
-            timer = 0f;
-            // Toggle between scene index 1 and 2
-            int currentIndex = SceneManager.GetActiveScene().buildIndex;
-            int nextIndex = (currentIndex == 1) ? 2 : 1;
-            FadeToScene(nextIndex);
+            timer += Time.unscaledDeltaTime;
+            if (timer >= autoChangeInterval)
+            {
+                timer = 0f;
+                // Toggle between scene index 1 and 2
+                int currentIndex = SceneManager.GetActiveScene().buildIndex;
+                int nextIndex = (currentIndex == 1) ? 2 : 1;
+                FadeToScene(nextIndex);
+            }
         }
     }
 
