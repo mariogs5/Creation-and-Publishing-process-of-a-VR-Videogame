@@ -28,7 +28,7 @@ public class GridManager : MonoBehaviour
     {
         isGenerating = false;
         maxNumber = rows * columns;
-        StartGeneratingNumbers();
+        //StartGeneratingNumbers();
     }
 
     #region Inspector Buttons (Generate & Delete Tiles GO)
