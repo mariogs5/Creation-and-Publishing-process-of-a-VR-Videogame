@@ -25,7 +25,7 @@ public class MySceneManager : MonoBehaviour
     private Material fadeMaterial;
     private Color fadeColor;
 
-
+    // Scene auto changer
     private float autoChangeInterval = 10f;
     private float timer = 0f;
 
