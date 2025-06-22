@@ -63,7 +63,7 @@ public class NewMole : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Mallet")
+        if (collision.gameObject.tag == "Mace")
         {
             OnHit?.Invoke();
             Destroy(gameObject);

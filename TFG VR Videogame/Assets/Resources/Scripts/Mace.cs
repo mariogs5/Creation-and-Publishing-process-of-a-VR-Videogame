@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Mace : MonoBehaviour
 {
-    private XRGrabInteractable grabInteractable;
+    private StickyGrabInteractable grabInteractable;
     private Rigidbody rb;
     public bool isGrabed = false;
 
@@ -17,7 +17,7 @@ public class Mace : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         rb = GetComponent<Rigidbody>();
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<StickyGrabInteractable>();
 
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
@@ -51,5 +51,11 @@ public class Mace : MonoBehaviour
         {
             isGrabed = false;
         }
+    }
+
+    void OnDestroy()
+    {
+        grabInteractable.selectEntered.RemoveListener(OnGrab);
+        grabInteractable.selectExited.RemoveListener(OnRelease);
     }
 }
