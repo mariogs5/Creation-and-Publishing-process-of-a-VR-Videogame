@@ -67,6 +67,16 @@ public class MySceneManager : MonoBehaviour
         {
             currentMode = Mode.Arcade;
             //Change Scene to arcade
+            FadeToScene(1);
+        }
+    }
+    public void ChangeToSurvival()
+    {
+        if (currentMode != Mode.Survival)
+        {
+            currentMode = Mode.Survival;
+            //Change Scene to Survival
+            FadeToScene(2);
         }
     }
 
