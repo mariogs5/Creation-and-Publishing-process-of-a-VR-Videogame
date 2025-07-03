@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Rendering.ShadowCascadeGUI;
 
 public class GameModeSelection : MonoBehaviour
 {
     private MySceneManager mySceneManager;
+
     public enum Mode
     {
         None,
@@ -19,6 +21,7 @@ public class GameModeSelection : MonoBehaviour
 
     private void Awake()
     {
+        // Scene Manager
         GameObject sceneManagerGO = GameObject.FindWithTag("SceneManager");
         if (sceneManagerGO != null)
         {

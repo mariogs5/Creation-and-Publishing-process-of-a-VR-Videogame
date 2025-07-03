@@ -1,11 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Rigidbody))]
 public class StickyGrabInteractable : XRGrabInteractable
 {
-    bool _isStuck = false;
+    public bool _isStuck = false;
     IXRSelectInteractor _stuckInteractor = null;
+
+    public List<Vector3> positionList = new List<Vector3>();
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
