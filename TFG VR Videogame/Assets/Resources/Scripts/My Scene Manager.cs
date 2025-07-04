@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Mode
+public enum Scene
 {
     Menu,
     Arcade,
@@ -13,7 +13,7 @@ public enum Mode
 public class MySceneManager : MonoBehaviour
 {
     [Header("Mode Settings")]
-    public Mode currentMode;
+    public Scene currentScene;
 
     [Header("Fade Settings")]
     [Tooltip("Assign the Renderer of the quad used for fading.")]
@@ -44,7 +44,7 @@ public class MySceneManager : MonoBehaviour
 
     void Start()
     {
-        currentMode = Mode.Menu;
+        currentScene = Scene.Menu;
     }
 
     void Update()
@@ -65,18 +65,18 @@ public class MySceneManager : MonoBehaviour
 
     public void ChangeToArcade()
     {
-        if (currentMode != Mode.Arcade)
+        if (currentScene != Scene.Arcade)
         {
-            currentMode = Mode.Arcade;
+            currentScene = Scene.Arcade;
             //Change Scene to arcade
             FadeToScene(1);
         }
     }
     public void ChangeToSurvival()
     {
-        if (currentMode != Mode.Survival)
+        if (currentScene != Scene.Survival)
         {
-            currentMode = Mode.Survival;
+            currentScene = Scene.Survival;
             //Change Scene to Survival
             FadeToScene(2);
         }
