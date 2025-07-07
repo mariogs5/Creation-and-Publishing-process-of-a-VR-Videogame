@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject gameModes;
+    [SerializeField] private GameObject moles;
 
     private void OnEnable()
     {
@@ -18,6 +18,9 @@ public class MainMenu : MonoBehaviour
 
     private void StartMenu()
     {
-
+        if (moles != null)
+        {
+            moles.SetActive(true);
+        }
     }
 }

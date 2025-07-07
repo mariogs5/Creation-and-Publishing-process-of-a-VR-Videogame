@@ -13,6 +13,8 @@ public class Mace : MonoBehaviour
     private Rigidbody rb;
     public bool isGrabed = false;
 
+    public bool testGrab;
+
     private void Awake()
     {
         isGrabed = false;
@@ -34,7 +36,10 @@ public class Mace : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (testGrab)
+        {
+            onGrab?.Invoke();
+        }
     }
 
     private void OnGrab(SelectEnterEventArgs args)
