@@ -12,6 +12,12 @@ public class StickyGrabInteractable : XRGrabInteractable
 
     public List<Vector3> positionList = new List<Vector3>();
 
+    protected override void Awake()
+    {
+        base.Awake();
+        selectMode = InteractableSelectMode.Single;
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
@@ -23,17 +29,20 @@ public class StickyGrabInteractable : XRGrabInteractable
         }
     }
 
+    // Function called when the user release the grip button
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         if (_isStuck && args.interactorObject == _stuckInteractor)
         {
+            interactionManager.SelectEnter(_stuckInteractor, this);
             return;
         }
 
         base.OnSelectExited(args);
     }
 
-    public void ReleaseStickyGrab()
+    // Use this function when you want to release the object
+    public void ReleaseStickyGrab(int nextScene)
     {
         if (_isStuck && _stuckInteractor != null)
         {
@@ -42,6 +51,8 @@ public class StickyGrabInteractable : XRGrabInteractable
             interactionManager.SelectExit(_stuckInteractor, this);
 
             _stuckInteractor = null;
+
+            gameObject.transform.position = positionList[nextScene];
         }
     }
 }

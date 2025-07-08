@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum Scene
 {
+    FirstMenu,
     Menu,
     Arcade,
     Survival,
@@ -27,6 +28,9 @@ public class MySceneManager : MonoBehaviour
 
     public bool isStarted = false;
 
+    private GameObject mace;
+    private StickyGrabInteractable maceStickyGrab;
+
     // Scene auto changer
     private float autoChangeInterval = 10f;
     private float timer = 0f;
@@ -40,11 +44,17 @@ public class MySceneManager : MonoBehaviour
         fadeMaterial.color = fadeColor;
 
         DontDestroyOnLoad(gameObject);
+
+        mace = GameObject.FindWithTag("Mace");
+        if (mace != null)
+        {
+            maceStickyGrab = mace.GetComponent<StickyGrabInteractable>();
+        }
     }
 
     void Start()
     {
-        currentScene = Scene.Menu;
+        currentScene = Scene.FirstMenu;
     }
 
     void Update()
@@ -70,6 +80,7 @@ public class MySceneManager : MonoBehaviour
             currentScene = Scene.Arcade;
             //Change Scene to arcade
             FadeToScene(1);
+            maceStickyGrab.ReleaseStickyGrab(1);
         }
     }
     public void ChangeToSurvival()
@@ -79,6 +90,7 @@ public class MySceneManager : MonoBehaviour
             currentScene = Scene.Survival;
             //Change Scene to Survival
             FadeToScene(2);
+            maceStickyGrab.ReleaseStickyGrab(2);
         }
     }
 
