@@ -28,8 +28,14 @@ public class MySceneManager : MonoBehaviour
 
     public bool isStarted = false;
 
-    private GameObject mace;
-    private StickyGrabInteractable maceStickyGrab;
+    // Mace Vars
+    private GameObject maceGO;
+    //private StickyGrabInteractable maceStickyGrab;
+    public List<Vector3> macePositionList = new List<Vector3>();
+
+    // Player Rig Vars
+    private GameObject playerRigGO;
+    public List<Vector3> playerPositionList = new List<Vector3>();
 
     // Scene auto changer
     private float autoChangeInterval = 10f;
@@ -45,11 +51,12 @@ public class MySceneManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        mace = GameObject.FindWithTag("Mace");
-        if (mace != null)
+        maceGO = GameObject.FindWithTag("Mace");
+        if (maceGO != null)
         {
-            maceStickyGrab = mace.GetComponent<StickyGrabInteractable>();
+            //maceStickyGrab = maceGO.GetComponent<StickyGrabInteractable>();
         }
+        playerRigGO = GameObject.FindWithTag("Player");
     }
 
     void Start()
@@ -78,9 +85,15 @@ public class MySceneManager : MonoBehaviour
         if (currentScene != Scene.Arcade)
         {
             currentScene = Scene.Arcade;
+
             //Change Scene to arcade
-            FadeToScene(1);
-            maceStickyGrab.ReleaseStickyGrab(1);
+            FadeToScene((int)currentScene);
+
+            // Release Mace Grab and Change the spawn positions for the new Scene
+            //maceStickyGrab.ReleaseStickyGrab();
+            maceGO.transform.position = macePositionList[(int)currentScene];
+
+            playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
     }
     public void ChangeToSurvival()
@@ -88,9 +101,15 @@ public class MySceneManager : MonoBehaviour
         if (currentScene != Scene.Survival)
         {
             currentScene = Scene.Survival;
+
             //Change Scene to Survival
-            FadeToScene(2);
-            maceStickyGrab.ReleaseStickyGrab(2);
+            FadeToScene((int)currentScene);
+
+            // Release Mace Grab and Change the spawn positions for the new Scene
+            //maceStickyGrab.ReleaseStickyGrab();
+            maceGO.transform.position = macePositionList[(int)currentScene];
+
+            playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
     }
 

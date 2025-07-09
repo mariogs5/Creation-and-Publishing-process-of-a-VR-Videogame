@@ -10,8 +10,6 @@ public class StickyGrabInteractable : XRGrabInteractable
     public bool _isStuck = false;
     IXRSelectInteractor _stuckInteractor = null;
 
-    public List<Vector3> positionList = new List<Vector3>();
-
     protected override void Awake()
     {
         base.Awake();
@@ -42,7 +40,7 @@ public class StickyGrabInteractable : XRGrabInteractable
     }
 
     // Use this function when you want to release the object
-    public void ReleaseStickyGrab(int nextScene)
+    public void ReleaseStickyGrab()
     {
         if (_isStuck && _stuckInteractor != null)
         {
@@ -51,8 +49,6 @@ public class StickyGrabInteractable : XRGrabInteractable
             interactionManager.SelectExit(_stuckInteractor, this);
 
             _stuckInteractor = null;
-
-            gameObject.transform.position = positionList[nextScene];
         }
     }
 }
