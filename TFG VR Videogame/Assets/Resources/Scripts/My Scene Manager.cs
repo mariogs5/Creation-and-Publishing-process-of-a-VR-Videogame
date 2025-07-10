@@ -23,6 +23,10 @@ public class MySceneManager : MonoBehaviour
     public float fadeDuration = 1f;
     public bool autoSceneChange = false;
 
+    [Header("Reference to each hand scripts:")]
+    [SerializeField] private MaceGrabInteractable leftHand;
+    [SerializeField] private MaceGrabInteractable rightHand;
+
     private Material fadeMaterial;
     private Color fadeColor;
 
@@ -91,9 +95,8 @@ public class MySceneManager : MonoBehaviour
 
             // Release Mace Grab and Change the spawn positions for the new Scene
             //maceStickyGrab.ReleaseStickyGrab();
-            maceGO.transform.position = macePositionList[(int)currentScene];
-
-            playerRigGO.transform.position = playerPositionList[(int)currentScene];
+            //maceGO.transform.position = macePositionList[(int)currentScene];
+            //playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
     }
     public void ChangeToSurvival()
@@ -107,10 +110,23 @@ public class MySceneManager : MonoBehaviour
 
             // Release Mace Grab and Change the spawn positions for the new Scene
             //maceStickyGrab.ReleaseStickyGrab();
-            maceGO.transform.position = macePositionList[(int)currentScene];
-
-            playerRigGO.transform.position = playerPositionList[(int)currentScene];
+            //maceGO.transform.position = macePositionList[(int)currentScene];
+            //playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
+    }
+    private void SetupScene()
+    {
+        // Release Mace Grab and Change the spawn positions for the new Scene
+        if (rightHand.isTracking)
+        {
+            rightHand.StopTracking();
+        }
+        else if (leftHand.isTracking)
+        {
+            leftHand.StopTracking();
+        }
+        maceGO.transform.position = macePositionList[(int)currentScene];
+        playerRigGO.transform.position = playerPositionList[(int)currentScene];
     }
 
     public void FadeToScene(int sceneIndex)
@@ -121,6 +137,8 @@ public class MySceneManager : MonoBehaviour
     private IEnumerator DoSceneFade(int sceneIndex)
     {
         yield return StartCoroutine(Fade(0f, 1f));
+
+        SetupScene(); // Change the position of the Mace & Player according to the new scene
 
         var loadOp = SceneManager.LoadSceneAsync(sceneIndex);
         while (!loadOp.isDone)
