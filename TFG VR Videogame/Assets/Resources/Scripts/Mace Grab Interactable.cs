@@ -18,14 +18,15 @@ public class MaceGrabInteractable : MonoBehaviour
     [SerializeField] private Transform rightAttachPoint;
     [SerializeField] private Transform leftAttachPoint;
 
-    // Boolean to check if the Mace is tracking this hand
-    public bool isTracking;
+    [HideInInspector]
+    public bool isTracking = false; // Boolean to check if the Mace is tracking this hand
 
     // Reference to the XRInteractor script to disable it if the Mace is tracking
     private XRDirectInteractor handInteractor;
 
     private void Awake()
     {
+        isTracking = false;
         handInteractor = GetComponent<XRDirectInteractor>();
     }
 
@@ -61,12 +62,20 @@ public class MaceGrabInteractable : MonoBehaviour
         mace.transform.rotation = leftAttachPoint.rotation;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Handle" && !otherHand.isTracking)
+        if (collision.transform.tag == "Handle" && !otherHand.isTracking)
         {
             isTracking = true;
             handInteractor.enabled = false;
         }
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Handle" && !otherHand.isTracking)
+    //    {
+    //        isTracking = true;
+    //        handInteractor.enabled = false;
+    //    }
+    //}
 }

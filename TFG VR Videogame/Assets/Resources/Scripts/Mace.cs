@@ -24,16 +24,16 @@ public class Mace : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         //grabInteractable = GetComponent<StickyGrabInteractable>();
-        grabInteractable2 = GetComponent<XRGrabInteractable>();
+        //grabInteractable2 = GetComponent<XRGrabInteractable>();
 
         //grabInteractable.selectEntered.AddListener(OnGrab);
         //grabInteractable.selectExited.AddListener(OnRelease);
 
-        grabInteractable2.selectEntered.AddListener(OnGrab);
-        grabInteractable2.selectExited.AddListener(OnRelease);
+        //grabInteractable2.selectEntered.AddListener(OnGrab);
+        //grabInteractable2.selectExited.AddListener(OnRelease);
 
-        rb.useGravity = false;
-        rb.isKinematic = true;
+        //rb.useGravity = false;
+        //rb.isKinematic = true;
     }
 
     private void Start()
@@ -73,7 +73,7 @@ public class Mace : MonoBehaviour
         //grabInteractable.selectEntered.RemoveListener(OnGrab);
         //grabInteractable.selectExited.RemoveListener(OnRelease);
 
-        grabInteractable2.selectEntered.RemoveListener(OnGrab);
-        grabInteractable2.selectExited.RemoveListener(OnRelease);
+        //grabInteractable2.selectEntered.RemoveListener(OnGrab);
+        //grabInteractable2.selectExited.RemoveListener(OnRelease);
     }
 }
