@@ -10,9 +10,9 @@ public class Mace : MonoBehaviour
     public static Action onGrab { get; set; }
 
     //private StickyGrabInteractable grabInteractable;
-    private XRGrabInteractable grabInteractable2;
+    //private XRGrabInteractable grabInteractable2;
 
-    private Rigidbody rb;
+    //private Rigidbody rb;
     public bool isGrabed = false;
 
     public bool testGrab;
@@ -22,7 +22,7 @@ public class Mace : MonoBehaviour
         isGrabed = false;
         DontDestroyOnLoad(gameObject);
 
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         //grabInteractable = GetComponent<StickyGrabInteractable>();
         //grabInteractable2 = GetComponent<XRGrabInteractable>();
 
@@ -55,8 +55,8 @@ public class Mace : MonoBehaviour
             onGrab?.Invoke();
 
             isGrabed = true;
-            rb.useGravity = true;
-            rb.isKinematic = false;
+            //rb.useGravity = true;
+            //rb.isKinematic = false;
         }
     }
 
