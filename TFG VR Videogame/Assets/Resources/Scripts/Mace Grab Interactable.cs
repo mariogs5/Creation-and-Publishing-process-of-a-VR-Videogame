@@ -28,6 +28,7 @@ public class MaceGrabInteractable : MonoBehaviour
     {
         isTracking = false;
         //handInteractor = GetComponent<XRDirectInteractor>();
+        Debug.Log("MaceGrabInteractable Awake");
     }
 
     private void Update()
@@ -64,7 +65,7 @@ public class MaceGrabInteractable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((collision.gameObject.CompareTag("Handle") || collision.gameObject.CompareTag("Mace")) && otherHand.isTracking == false)
+        if ((collision.gameObject.CompareTag("Handle") || collision.gameObject.CompareTag("Mace")) && isTracking && otherHand.isTracking == false)
         {
             if (isRightHand)
             {
