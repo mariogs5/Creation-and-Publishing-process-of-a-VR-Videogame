@@ -23,9 +23,9 @@ public class MySceneManager : MonoBehaviour
     public float fadeDuration = 1f;
     public bool autoSceneChange = false;
 
-    [Header("Reference to each hand scripts:")]
-    [SerializeField] private MaceGrabInteractable leftHand;
-    [SerializeField] private MaceGrabInteractable rightHand;
+    //[Header("Reference to each hand scripts:")]
+    //[SerializeField] private MaceGrabInteractable leftHand;
+    //[SerializeField] private MaceGrabInteractable rightHand;
 
     private Material fadeMaterial;
     private Color fadeColor;
@@ -34,7 +34,7 @@ public class MySceneManager : MonoBehaviour
 
     // Mace Vars
     private GameObject maceGO;
-    //private StickyGrabInteractable maceStickyGrab;
+    private StickyGrabInteractable maceStickyGrab;
     public List<Vector3> macePositionList = new List<Vector3>();
 
     // Player Rig Vars
@@ -58,7 +58,7 @@ public class MySceneManager : MonoBehaviour
         maceGO = GameObject.FindWithTag("Mace");
         if (maceGO != null)
         {
-            //maceStickyGrab = maceGO.GetComponent<StickyGrabInteractable>();
+            maceStickyGrab = maceGO.GetComponent<StickyGrabInteractable>();
         }
         playerRigGO = GameObject.FindWithTag("Player");
     }
@@ -117,14 +117,15 @@ public class MySceneManager : MonoBehaviour
     private void SetupScene()
     {
         // Release Mace Grab and Change the spawn positions for the new Scene
-        if (rightHand.isTracking)
-        {
-            rightHand.StopTracking();
-        }
-        else if (leftHand.isTracking)
-        {
-            leftHand.StopTracking();
-        }
+        //if (rightHand.isTracking)
+        //{
+        //    rightHand.StopTracking();
+        //}
+        //else if (leftHand.isTracking)
+        //{
+        //    leftHand.StopTracking();
+        //}
+        maceStickyGrab.ReleaseStickyGrab();
         maceGO.transform.position = macePositionList[(int)currentScene];
         playerRigGO.transform.position = playerPositionList[(int)currentScene];
     }

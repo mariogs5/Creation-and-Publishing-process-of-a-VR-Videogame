@@ -9,10 +9,9 @@ public class Mace : MonoBehaviour
 {
     public static Action onGrab { get; set; }
 
-    //private StickyGrabInteractable grabInteractable;
-    //private XRGrabInteractable grabInteractable2;
+    private StickyGrabInteractable grabInteractable;
 
-    //private Rigidbody rb;
+    private Rigidbody rb;
     public bool isGrabed = false;
 
     public bool testGrab;
@@ -22,18 +21,14 @@ public class Mace : MonoBehaviour
         isGrabed = false;
         DontDestroyOnLoad(gameObject);
 
-        //rb = GetComponent<Rigidbody>();
-        //grabInteractable = GetComponent<StickyGrabInteractable>();
-        //grabInteractable2 = GetComponent<XRGrabInteractable>();
+        rb = GetComponent<Rigidbody>();
+        grabInteractable = GetComponent<StickyGrabInteractable>();
 
-        //grabInteractable.selectEntered.AddListener(OnGrab);
+        grabInteractable.selectEntered.AddListener(OnGrab);
         //grabInteractable.selectExited.AddListener(OnRelease);
 
-        //grabInteractable2.selectEntered.AddListener(OnGrab);
-        //grabInteractable2.selectExited.AddListener(OnRelease);
-
-        //rb.useGravity = false;
-        //rb.isKinematic = true;
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     private void Start()
@@ -55,8 +50,8 @@ public class Mace : MonoBehaviour
             onGrab?.Invoke();
 
             isGrabed = true;
-            //rb.useGravity = true;
-            //rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.isKinematic = false;
         }
     }
 
@@ -70,10 +65,7 @@ public class Mace : MonoBehaviour
 
     void OnDestroy()
     {
-        //grabInteractable.selectEntered.RemoveListener(OnGrab);
+        grabInteractable.selectEntered.RemoveListener(OnGrab);
         //grabInteractable.selectExited.RemoveListener(OnRelease);
-
-        //grabInteractable2.selectEntered.RemoveListener(OnGrab);
-        //grabInteractable2.selectExited.RemoveListener(OnRelease);
     }
 }

@@ -31,8 +31,11 @@ public class GameModeSelection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Mace")
+        Debug.Log("AA");
+
+        if (collision.gameObject.CompareTag("Mace"))
         {
+            Debug.Log("Mole Hitted");
             if(mySceneManager != null)
             {
                 if(selectedMode == Mode.Arcade)
