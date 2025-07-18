@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Mace : MonoBehaviour
 {
     public static Action onGrab { get; set; }
+    public static Action onRelease { get; set; }
 
     private StickyGrabInteractable grabInteractable;
 
@@ -25,7 +26,7 @@ public class Mace : MonoBehaviour
         grabInteractable = GetComponent<StickyGrabInteractable>();
 
         grabInteractable.selectEntered.AddListener(OnGrab);
-        //grabInteractable.selectExited.AddListener(OnRelease);
+        grabInteractable.selectExited.AddListener(OnRelease);
 
         rb.useGravity = false;
         rb.isKinematic = true;
@@ -51,7 +52,7 @@ public class Mace : MonoBehaviour
 
             isGrabed = true;
             rb.useGravity = true;
-            rb.isKinematic = false;
+            rb.isKinematic = true;
         }
     }
 
@@ -60,6 +61,7 @@ public class Mace : MonoBehaviour
         if (isGrabed)
         {
             isGrabed = false;
+            onRelease?.Invoke();
         }
     }
 

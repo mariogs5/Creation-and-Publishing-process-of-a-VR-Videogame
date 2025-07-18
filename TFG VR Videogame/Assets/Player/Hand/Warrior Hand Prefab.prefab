@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100062, guid: 50fb299873edc8249969b2d238820a0f, type: 3}
       propertyPath: m_Name
-      value: WarriorHand_Idle
+      value: Warrior Hand Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: 50fb299873edc8249969b2d238820a0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,5 +63,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100062, guid: 50fb299873edc8249969b2d238820a0f,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 3497042808652189151}
   m_SourcePrefab: {fileID: 100100000, guid: 50fb299873edc8249969b2d238820a0f, type: 3}
+--- !u!1 &5754807091968954961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100062, guid: 50fb299873edc8249969b2d238820a0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5754807091968922767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3497042808652189151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5754807091968954961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866c0b7c2d075e348bc9a65c45b45ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
