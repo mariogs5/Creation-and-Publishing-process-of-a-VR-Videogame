@@ -127,6 +127,7 @@ public class MySceneManager : MonoBehaviour
         //}
         maceStickyGrab.ReleaseStickyGrab();
         maceGO.transform.position = macePositionList[(int)currentScene];
+        maceGO.transform.rotation = Quaternion.identity;
         playerRigGO.transform.position = playerPositionList[(int)currentScene];
     }
 
