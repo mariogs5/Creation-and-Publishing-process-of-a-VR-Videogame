@@ -52,7 +52,7 @@ public class Mace : MonoBehaviour
 
             isGrabed = true;
             rb.useGravity = true;
-            rb.isKinematic = true;
+            rb.isKinematic = false;
         }
     }
 

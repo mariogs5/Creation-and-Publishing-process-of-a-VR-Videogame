@@ -16,34 +16,27 @@ public class MySceneManager : MonoBehaviour
     [Header("Mode Settings")]
     public Scene currentScene;
 
+    // Fade Vars
     [Header("Fade Settings")]
     [Tooltip("Assign the Renderer of the quad used for fading.")]
     public Renderer fadeQuad;
     [Tooltip("How long the fade in/out takes.")]
     public float fadeDuration = 1f;
     public bool autoSceneChange = false;
-
-    //[Header("Reference to each hand scripts:")]
-    //[SerializeField] private MaceGrabInteractable leftHand;
-    //[SerializeField] private MaceGrabInteractable rightHand;
-
     private Material fadeMaterial;
     private Color fadeColor;
 
-    public bool isStarted = false;
+    [Header("Spawn Positions")]
+    [SerializeField] Vector3 maceDistanceFromPlayer;
 
     // Mace Vars
     private GameObject maceGO;
     private StickyGrabInteractable maceStickyGrab;
-    public List<Vector3> macePositionList = new List<Vector3>();
+    //public List<Vector3> macePositionList = new List<Vector3>();
 
     // Player Rig Vars
     private GameObject playerRigGO;
     public List<Vector3> playerPositionList = new List<Vector3>();
-
-    // Scene auto changer
-    private float autoChangeInterval = 10f;
-    private float timer = 0f;
 
     private void Awake()
     {
@@ -68,22 +61,6 @@ public class MySceneManager : MonoBehaviour
         currentScene = Scene.FirstMenu;
     }
 
-    void Update()
-    {
-        if (autoSceneChange)
-        {
-            timer += Time.unscaledDeltaTime;
-            if (timer >= autoChangeInterval)
-            {
-                timer = 0f;
-                // Toggle between scene index 1 and 2
-                int currentIndex = SceneManager.GetActiveScene().buildIndex;
-                int nextIndex = (currentIndex == 1) ? 2 : 1;
-                FadeToScene(nextIndex);
-            }
-        }
-    }
-
     public void ChangeToArcade()
     {
         if (currentScene != Scene.Arcade)
@@ -92,11 +69,6 @@ public class MySceneManager : MonoBehaviour
 
             //Change Scene to arcade
             FadeToScene((int)currentScene);
-
-            // Release Mace Grab and Change the spawn positions for the new Scene
-            //maceStickyGrab.ReleaseStickyGrab();
-            //maceGO.transform.position = macePositionList[(int)currentScene];
-            //playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
     }
     public void ChangeToSurvival()
@@ -107,26 +79,12 @@ public class MySceneManager : MonoBehaviour
 
             //Change Scene to Survival
             FadeToScene((int)currentScene);
-
-            // Release Mace Grab and Change the spawn positions for the new Scene
-            //maceStickyGrab.ReleaseStickyGrab();
-            //maceGO.transform.position = macePositionList[(int)currentScene];
-            //playerRigGO.transform.position = playerPositionList[(int)currentScene];
         }
     }
     private void SetupScene()
     {
-        // Release Mace Grab and Change the spawn positions for the new Scene
-        //if (rightHand.isTracking)
-        //{
-        //    rightHand.StopTracking();
-        //}
-        //else if (leftHand.isTracking)
-        //{
-        //    leftHand.StopTracking();
-        //}
         maceStickyGrab.ReleaseStickyGrab();
-        maceGO.transform.position = macePositionList[(int)currentScene];
+        maceGO.transform.position = playerPositionList[(int)currentScene] + maceDistanceFromPlayer;
         maceGO.transform.rotation = Quaternion.identity;
         playerRigGO.transform.position = playerPositionList[(int)currentScene];
     }
