@@ -27,7 +27,8 @@ public class MySceneManager : MonoBehaviour
     private Color fadeColor;
 
     [Header("Spawn Positions")]
-    [SerializeField] Vector3 maceDistanceFromPlayer;
+    [SerializeField] private Vector3 maceDistanceFromPlayer;
+    [SerializeField] private Vector3 boxDistanceFromPlayer;
 
     // Mace Vars
     private GameObject maceGO;

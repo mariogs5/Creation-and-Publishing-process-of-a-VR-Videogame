@@ -15,8 +15,6 @@ public class Mace : MonoBehaviour
     private Rigidbody rb;
     public bool isGrabed = false;
 
-    public bool testGrab;
-
     private void Awake()
     {
         isGrabed = false;
@@ -32,42 +30,34 @@ public class Mace : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        if (testGrab)
-        {
-            onGrab?.Invoke();
-        }
-    }
-
     private void OnGrab(SelectEnterEventArgs args)
     {
-        if (!isGrabed)
-        {
-            onGrab?.Invoke();
+        onGrab?.Invoke();
 
-            isGrabed = true;
-            rb.useGravity = true;
-            rb.isKinematic = false;
-        }
+        //if (!isGrabed)
+        //{
+        //    onGrab?.Invoke();
+
+        //    isGrabed = true;
+        //    rb.useGravity = true;
+        //    rb.isKinematic = false;
+        //}
     }
 
     private void OnRelease(SelectExitEventArgs args)
     {
-        if (isGrabed)
-        {
-            isGrabed = false;
-            onRelease?.Invoke();
-        }
+        onRelease?.Invoke();
+
+        //if (isGrabed)
+        //{
+        //    isGrabed = false;
+        //    onRelease?.Invoke();
+        //}
     }
 
     void OnDestroy()
     {
         grabInteractable.selectEntered.RemoveListener(OnGrab);
-        //grabInteractable.selectExited.RemoveListener(OnRelease);
+        grabInteractable.selectExited.RemoveListener(OnRelease);
     }
 }
