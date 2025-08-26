@@ -16,6 +16,8 @@ public class MySceneManager : MonoBehaviour
     [Header("Mode Settings")]
     public Scene currentScene;
 
+    [HideInInspector] public int levelNumber;
+
     // Fade Vars
     [Header("Fade Settings")]
     [Tooltip("Assign the Renderer of the quad used for fading.")]
@@ -41,6 +43,8 @@ public class MySceneManager : MonoBehaviour
 
     private void Awake()
     {
+        levelNumber = 1;
+
         fadeMaterial = fadeQuad.material;
         fadeColor = fadeMaterial.color;
 
@@ -61,26 +65,24 @@ public class MySceneManager : MonoBehaviour
     {
         currentScene = Scene.FirstMenu;
     }
+    public void ChangeToMenu()
+    {
+        currentScene = Scene.Menu;
+
+        FadeToScene((int)currentScene);
+    }
 
     public void ChangeToArcade()
     {
-        if (currentScene != Scene.Arcade)
-        {
-            currentScene = Scene.Arcade;
+        currentScene = Scene.Arcade;
 
-            //Change Scene to arcade
-            FadeToScene((int)currentScene);
-        }
+        FadeToScene((int)currentScene);
     }
     public void ChangeToSurvival()
     {
-        if (currentScene != Scene.Survival)
-        {
-            currentScene = Scene.Survival;
+        currentScene = Scene.Survival;
 
-            //Change Scene to Survival
-            FadeToScene((int)currentScene);
-        }
+        FadeToScene((int)currentScene);
     }
     private void SetupScene()
     {

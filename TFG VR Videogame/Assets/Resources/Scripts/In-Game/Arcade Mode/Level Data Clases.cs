@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 
+// ------- Level Layout Classes ------- \\
 [System.Serializable]
 public class SpawnData
 {
@@ -20,4 +22,18 @@ public class Level
 public class LevelList
 {
     public List<Level> levels;
+}
+
+// ------- Save File Classes ------- \\
+[Serializable]
+public class LevelSave
+{
+    public int levelID;
+    public int score;
+}
+
+[Serializable]
+public class SaveData
+{
+    public List<LevelSave> levels = new List<LevelSave>();
 }

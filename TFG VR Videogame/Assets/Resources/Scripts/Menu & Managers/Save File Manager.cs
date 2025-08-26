@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[Serializable]
-public class LevelSave
-{
-    public int levelID;
-    public int score;
-}
-
-[Serializable]
-public class SaveData
-{
-    public List<LevelSave> levels = new List<LevelSave>();
-}
-
 public class SaveFileManager : MonoBehaviour
 {
     private string saveFilePath;
@@ -48,7 +35,6 @@ public class SaveFileManager : MonoBehaviour
         {
             Debug.Log("No save file found—starting fresh.");
             saveData = new SaveData();
-            // Create empty file if needed
         }
     }
 
@@ -87,5 +73,10 @@ public class SaveFileManager : MonoBehaviour
         if (saveData == null) return -1;
         var entry = saveData.levels.Find(e => e.levelID == levelID);
         return entry != null ? entry.score : -1;
+    }
+
+    public int GetMaxLevelReached()
+    {
+        return saveData.levels.Count;
     }
 }

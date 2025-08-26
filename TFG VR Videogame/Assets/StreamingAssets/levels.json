@@ -1,0 +1,25 @@
+{
+  "levels": [
+    {
+      "levelNumber": 1,
+      "spawns": [
+        { "spotIndex": 1, "isMole": true },
+        { "spotIndex": 2, "isMole": false },
+        { "spotIndex": 3, "isMole": true },
+        { "spotIndex": 4, "isMole": false },
+        { "spotIndex": 5, "isMole": true }
+      ],
+      "spawnSpeed": 1.2,
+      "lifeTime": 2.0
+    },
+    {
+      "levelNumber": 2,
+      "spawns": [
+        { "spotIndex": 1, "isMole": true },
+        { "spotIndex": 3, "isMole": true }
+      ],
+      "spawnSpeed": 1.0,
+      "lifeTime": 0.7
+    }
+  ]
+}

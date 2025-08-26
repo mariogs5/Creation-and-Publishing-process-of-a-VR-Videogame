@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class NewVegetable : MonoBehaviour
+public class Vegetable : MonoBehaviour
 {
     // --- Events --- \\
     public static Action OnDunk { get; set; }
@@ -17,7 +17,7 @@ public class NewVegetable : MonoBehaviour
     // --- Color --- \\
     private Color startColor = Color.white;
     private Color endColor = Color.green;
-    private float duration = 2f;
+    private float duration = 10f;
 
     // --- GO Vars --- \\
     private float timer;

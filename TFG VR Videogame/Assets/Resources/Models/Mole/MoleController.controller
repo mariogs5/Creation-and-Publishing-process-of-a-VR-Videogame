@@ -25,7 +25,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Stunt
     m_Type: 4
@@ -78,7 +78,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102944753496639346}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
@@ -125,7 +125,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102515484170845154}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
@@ -272,7 +272,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102320196492131046}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
@@ -789,7 +789,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7905d73c313308541821d95b0d6ee3c7, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -836,7 +836,7 @@ AnimatorStateMachine:
     m_Position: {x: 0, y: 276, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102038422921079790}
-    m_Position: {x: 0, y: 168, z: 0}
+    m_Position: {x: 0, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102520637806523600}
     m_Position: {x: 250, y: 280, z: 0}
@@ -845,7 +845,7 @@ AnimatorStateMachine:
     m_Position: {x: 504, y: 276, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102320196492131046}
-    m_Position: {x: 504, y: 168, z: 0}
+    m_Position: {x: 500, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102729896102181606}
     m_Position: {x: -260, y: 170, z: 0}

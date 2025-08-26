@@ -123,7 +123,7 @@ public class GridManager : MonoBehaviour
 
         Debug.Log("Number Generated: " + newNumber);
 
-        slotPool[newNumber].GetComponent<NewSlot>().SpawnObject();
+        //slotPool[newNumber].GetComponent<NewSlot>().SpawnObject();
     }
     #endregion
 

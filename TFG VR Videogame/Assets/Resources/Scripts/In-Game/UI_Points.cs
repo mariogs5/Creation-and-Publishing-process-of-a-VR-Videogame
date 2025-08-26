@@ -2,22 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UI_Points : MonoBehaviour
 {
-    private int score = 0;
-    [SerializeField] private TextMeshPro text_Score;
+    [SerializeField] private TextMeshPro scoreUI;
+    [SerializeField] private LevelObjectSpawn objectSpawn;
 
     private void OnEnable()
     {
-        NewMole.OnHit += UpdateScore;
-        NewVegetable.OnDunk += UpdateScore;
+        Mole.OnHit += MoleUpdateScore;
+        Vegetable.OnDunk += VegUpdateScore;
     }
 
-    private void UpdateScore()
+    private void OnDisable()
     {
-        ++score;
-        text_Score.text = "Score: " + score;
+        Mole.OnHit -= MoleUpdateScore;
+        Vegetable.OnDunk -= VegUpdateScore;
+    }
+
+    private void MoleUpdateScore()
+    {
+        objectSpawn.score += 500;
+        scoreUI.text = "Score: " + objectSpawn.score;
+    }
+
+    private void VegUpdateScore()
+    {
+
     }
 }

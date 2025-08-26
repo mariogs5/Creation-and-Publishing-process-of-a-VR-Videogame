@@ -35,7 +35,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: AwakeSpeed
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -448,7 +448,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 43a5d4a939b741c42af2100ee5cd2148, type: 3}
+  m_Motion: {fileID: 7400000, guid: 29b513893b8976f4bbb4cdcef21837ef, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -476,7 +476,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a8d15a0be2b808b42930f1e89090ffa2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 29b513893b8976f4bbb4cdcef21837ef, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -496,7 +496,7 @@ AnimatorStateMachine:
     m_Position: {x: 50, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102643705535320896}
-    m_Position: {x: 335.5, y: 72.5, z: 0}
+    m_Position: {x: 340, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102469056222599826}
     m_Position: {x: 290, y: 190, z: 0}
@@ -511,7 +511,7 @@ AnimatorStateMachine:
     m_Position: {x: 760, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102636695961233110}
-    m_Position: {x: 60, y: 72, z: 0}
+    m_Position: {x: 60, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

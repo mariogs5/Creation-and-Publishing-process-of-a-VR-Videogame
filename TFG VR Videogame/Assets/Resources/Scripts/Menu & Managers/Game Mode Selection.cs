@@ -8,9 +8,16 @@ public class GameModeSelection : MonoBehaviour
 {
     private MySceneManager mySceneManager;
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private Animator hatAnimator;
+
+    [SerializeField] private Animator mole2Animator;
+    [SerializeField] private Animator mole2HatAnimator;
+
     public enum Mode
     {
         None,
+        Menu,
         Arcade,
         Survival
     }
@@ -21,7 +28,9 @@ public class GameModeSelection : MonoBehaviour
 
     private void Awake()
     {
-        // Scene Manager
+        animator.SetTrigger("Awake");
+        hatAnimator.SetTrigger("Awake");
+
         GameObject sceneManagerGO = GameObject.FindWithTag("SceneManager");
         if (sceneManagerGO != null)
         {
@@ -31,23 +40,56 @@ public class GameModeSelection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("AA");
-
         if (collision.gameObject.CompareTag("Mace"))
         {
-            Debug.Log("Mole Hitted");
-            if(mySceneManager != null)
+            animator.SetTrigger("Hit");
+            hatAnimator.SetTrigger("Hit");
+
+            animator.SetBool("Stunt", true);
+            
+            if(selectedMode != Mode.Survival)
             {
-                if(selectedMode == Mode.Arcade)
-                {
-                    mySceneManager.ChangeToArcade();
-                }
-                else if (selectedMode == Mode.Survival)
-                {
-                    mySceneManager.ChangeToSurvival();
-                }
+                StartCoroutine(HideAnimation());
             }
-            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator HideAnimation()
+    {
+        animator.SetTrigger("Hide");
+        hatAnimator.SetTrigger("Hide");
+
+        mole2Animator.SetTrigger("Hide");
+        mole2HatAnimator.SetTrigger("Hide");
+
+        // Wait until the animator enters the "Hide" 
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("HideAfterHit"))
+            yield return null;
+
+        // Now wait until the animation has fully played (normalizedTime >= 1)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f
+               || animator.IsInTransition(0))
+        {
+            yield return null;
+        }
+
+        // Scene Change
+        if (mySceneManager != null)
+        {
+            switch (selectedMode)
+            {
+                case Mode.Menu:
+                    mySceneManager.ChangeToMenu();
+                    break;
+
+                case Mode.Arcade:
+                    mySceneManager.ChangeToArcade();
+                    break;
+
+                case Mode.Survival:
+                    mySceneManager.ChangeToSurvival();
+                    break;
+            }
         }
     }
 }
