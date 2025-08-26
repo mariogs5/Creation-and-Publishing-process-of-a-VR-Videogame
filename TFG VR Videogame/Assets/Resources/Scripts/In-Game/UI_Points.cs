@@ -14,13 +14,15 @@ public class UI_Points : MonoBehaviour
     private void OnEnable()
     {
         Mole.OnHit += MoleUpdateScore;
-        Vegetable.OnDunk += VegUpdateScore;
+        Vegetable.OnDunk += VegDunkUpdateScore;
+        Vegetable.OnHit += VegHitUpdateScore;
     }
 
     private void OnDisable()
     {
         Mole.OnHit -= MoleUpdateScore;
-        Vegetable.OnDunk -= VegUpdateScore;
+        Vegetable.OnDunk -= VegDunkUpdateScore;
+        Vegetable.OnHit -= VegHitUpdateScore;
     }
 
     private void MoleUpdateScore()
@@ -29,7 +31,16 @@ public class UI_Points : MonoBehaviour
         scoreUI.text = "Score: " + objectSpawn.score;
     }
 
-    private void VegUpdateScore()
+    private void VegHitUpdateScore()
+    {
+        if(objectSpawn.score > 100)
+        {
+            objectSpawn.score -= 100;
+            scoreUI.text = "Score: " + objectSpawn.score;
+        }
+    }
+
+    private void VegDunkUpdateScore()
     {
 
     }

@@ -98,7 +98,7 @@ public class LevelObjectSpawn : MonoBehaviour
 
     private IEnumerator LevelFinish()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(currentLevelInfo.lifeTime + 3f);
 
         float countdown = 3f;
         while (countdown > 0f)

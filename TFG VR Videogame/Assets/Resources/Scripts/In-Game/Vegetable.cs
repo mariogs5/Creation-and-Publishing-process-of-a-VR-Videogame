@@ -8,40 +8,28 @@ public class Vegetable : MonoBehaviour
 {
     // --- Events --- \\
     public static Action OnDunk { get; set; }
+    public static Action OnHit { get; set; }
 
-    // --- Components --- \\
-    private Renderer objectRenderer;
-    private Rigidbody rb;
-    private XRGrabInteractable grabInteractable;
-
-    // --- Color --- \\
-    private Color startColor = Color.white;
-    private Color endColor = Color.green;
-    private float duration = 10f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private CapsuleCollider capsuleCollider;
 
     // --- GO Vars --- \\
     private float timer;
+    public float duration = 10f;
+
     private bool isActive = false;
 
-    private void Awake()
+    private void Start()
     {
-        //objectRenderer = GetComponent<Renderer>();
-        //if (objectRenderer != null)
-        //{
-        //    objectRenderer.material.color = startColor;
-        //}
-
-        rb = GetComponent<Rigidbody>();
-        grabInteractable = GetComponent<XRGrabInteractable>();
-
-        grabInteractable.selectEntered.AddListener(OnGrab);
-        //grabInteractable.selectExited.AddListener(OnRelease);
-
-        rb.useGravity = false;
+        capsuleCollider.enabled = false;
 
         isActive = true;
 
-        ActivateColorChange();
+        //animator.SetTrigger("Awake");
+
+        ////capsuleCollider.enabled = true;
+
+        ////StartCoroutine(HideAnimation());
     }
 
     void Update()
@@ -50,44 +38,82 @@ public class Vegetable : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer <= duration)
+            if (timer >= duration / 3)
             {
-                //float t = timer / duration;
-                //objectRenderer.material.color = Color.Lerp(startColor, endColor, t);
+                animator.SetTrigger("Awake");
+
+                capsuleCollider.enabled = true;
             }
-            else
+            if (timer >= duration)
             {
                 isActive = false;
-                Destroy(gameObject);
+                StartCoroutine(HideAnimation());
             }
         }
     }
 
     private void OnGrab(SelectEnterEventArgs args)
     {
-        rb.isKinematic = false;
-        rb.useGravity = true;
-    }
-
-    public void ActivateColorChange()
-    {
-        //objectRenderer.material.color = startColor;
-        isActive = true;
-        timer = 0f;
+        //rb.isKinematic = false;
+        //rb.useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "VeggieBasket")
+        if (collision.gameObject.CompareTag("Mace"))
         {
-            OnDunk?.Invoke();
-            Destroy(gameObject);
+            isActive = false;
+            OnHit?.Invoke();
+
+            StartCoroutine(HitAndHideAnimation());
         }
     }
 
-    void OnDestroy()
+    IEnumerator HideAnimation()
     {
-        grabInteractable.selectEntered.RemoveListener(OnGrab);
-        //grabInteractable.selectExited.RemoveListener(OnRelease);
+        animator.SetTrigger("Hide");
+
+        animator.ResetTrigger("Awake");
+
+        // Wait until the animator enters the "HideAfterHit" 
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"))
+            yield return null;
+
+        // Now wait until the animation has fully played (normalizedTime >= 1)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f
+               || animator.IsInTransition(0))
+        {
+            yield return null;
+        }
+
+        // --- Delete GO --- \\
+        DeleteGO();
+    }
+
+    IEnumerator HitAndHideAnimation()
+    {
+        // --- Hit and Stunt Animation --- \\
+        animator.SetTrigger("Hit");
+
+        animator.ResetTrigger("Awake");
+
+        // Wait until the animator enters the "Stunt" 
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("HitAndHide"))
+            yield return null;
+
+        // Now wait until the animation has fully played (normalizedTime >= 1)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f
+               || animator.IsInTransition(0))
+        {
+            yield return null;
+        }
+
+        // --- Delete GO --- \\
+        DeleteGO();
+    }
+
+    private void DeleteGO()
+    {
+        Destroy(gameObject.transform.parent.parent.gameObject);
     }
 }

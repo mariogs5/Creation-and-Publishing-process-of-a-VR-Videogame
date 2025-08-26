@@ -19,7 +19,7 @@ public class Mole : MonoBehaviour
 
     private bool isActive = false;
 
-    private void Awake()
+    private void Start()
     {
         capsuleCollider.enabled = false;
 
@@ -39,7 +39,7 @@ public class Mole : MonoBehaviour
 
                 capsuleCollider.enabled = true;
             }
-            else if (timer >= duration)
+            if (timer >= duration)
             {
                 isActive = false;
                 StartCoroutine(HideAnimation());
@@ -51,6 +51,7 @@ public class Mole : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mace"))
         {
+            isActive = false;
             OnHit?.Invoke();
 
             StartCoroutine(HitAndHideAnimation());
@@ -62,18 +63,9 @@ public class Mole : MonoBehaviour
         // --- Hit and Stunt Animation --- \\
         animator.SetTrigger("Hit");
         hatAnimator.SetTrigger("Hit");
-        animator.SetBool("Stunt", true);
 
-        // Wait until the animator enters the "Stunt" 
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Stunt"))
-            yield return null;
-
-        // Now wait until the animation has fully played (normalizedTime >= 1)
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f
-               || animator.IsInTransition(0))
-        {
-            yield return null;
-        }
+        animator.ResetTrigger("Awake");
+        hatAnimator.ResetTrigger("Awake");
 
         // --- Hide Animation --- \\
         animator.SetTrigger("Hide");
@@ -96,12 +88,15 @@ public class Mole : MonoBehaviour
 
     IEnumerator HideAnimation()
     {
+        animator.ResetTrigger("Awake");
+        hatAnimator.ResetTrigger("Awake");
+
         // --- Hide Animation --- \\
         animator.SetTrigger("Hide");
         hatAnimator.SetTrigger("Hide");
 
         // Wait until the animator enters the "HideAfterHit" 
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("HideAfterHit"))
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"))
             yield return null;
 
         // Now wait until the animation has fully played (normalizedTime >= 1)
@@ -117,6 +112,6 @@ public class Mole : MonoBehaviour
 
     private void DeleteGO()
     {
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject.transform.parent.parent.gameObject);
     }
 }

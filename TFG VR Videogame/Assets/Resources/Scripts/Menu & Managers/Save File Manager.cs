@@ -43,7 +43,7 @@ public class SaveFileManager : MonoBehaviour
         if (saveData == null) saveData = new SaveData();
 
         var entry = saveData.levels.Find(e => e.levelID == levelID);
-        if (entry == null)
+        if (entry == null && score > 0)
         {
             saveData.levels.Add(new LevelSave { levelID = levelID, score = score });
         }

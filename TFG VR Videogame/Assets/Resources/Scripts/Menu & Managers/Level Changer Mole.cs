@@ -80,7 +80,7 @@ public class LevelChangerMole : MonoBehaviour
                     break;
 
                 case Type.Next:
-                    if(mySceneManager.levelNumber < 30 && mySceneManager.levelNumber <= saveFile.GetMaxLevelReached())
+                    if(mySceneManager.levelNumber < 30 && mySceneManager.levelNumber < saveFile.GetMaxLevelReached())
                     {
                         mySceneManager.levelNumber += 1;
                     }

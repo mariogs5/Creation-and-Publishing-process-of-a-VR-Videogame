@@ -37,24 +37,28 @@ public class Slot : MonoBehaviour
             if (isMole)
             {
                 GameObject obj = Instantiate(molePrefab);
+
+                //Mole moleScript = obj.GetComponent<Mole>();
+                Mole moleScript = obj.GetComponentInChildren<Mole>();
+                moleScript.duration = lifeTime;
+
                 obj.transform.SetParent(gameObject.transform, false);
-                obj.transform.localPosition = gameObject.transform.position;
+                //obj.transform.localPosition = gameObject.transform.position;
                 //obj.transform.localPosition = posMole;
                 //obj.transform.localRotation = Quaternion.identity;
-
-                Mole moleScript = obj.GetComponent<Mole>();
-                moleScript.duration = lifeTime;
             }
             else
             {
                 GameObject obj = Instantiate(vegetablePrefab);
+
+                //Vegetable vegScript = obj.GetComponent<Vegetable>();
+                Vegetable vegScript = obj.GetComponentInChildren<Vegetable>();
+                vegScript.duration = lifeTime;
+
                 obj.transform.SetParent(gameObject.transform, false);
-                obj.transform.localPosition = gameObject.transform.position;
+                //obj.transform.localPosition = gameObject.transform.position;
                 //obj.transform.localPosition = posVeg;
                 //obj.transform.localRotation = Quaternion.identity;
-
-                Vegetable vegScript = obj.GetComponent<Vegetable>();
-                //vegScript.duration = lifeTime;
             }
         }
         else
