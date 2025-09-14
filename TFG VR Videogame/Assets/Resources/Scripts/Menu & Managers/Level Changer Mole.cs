@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelChangerMole : MonoBehaviour
 {
@@ -69,9 +70,6 @@ public class LevelChangerMole : MonoBehaviour
 
             switch (moleType)
             {
-                case Type.None:
-                    break;
-
                 case Type.Previous:
                     if(mySceneManager.levelNumber > 1)
                     {
@@ -123,13 +121,13 @@ public class LevelChangerMole : MonoBehaviour
         mole2Animator.SetTrigger("Hide");
         mole2HatAnimator.SetTrigger("Hide");
 
-        //yield return null;
-
         // Wait until the animator enters the "Hide" 
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("HideAfterHit"))
+        {
             yield return null;
+        }
 
-        // Now wait until the animation has fully played (normalizedTime >= 1)
+        // Now wait until the animation finish
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f
                || animator.IsInTransition(0))
         {
