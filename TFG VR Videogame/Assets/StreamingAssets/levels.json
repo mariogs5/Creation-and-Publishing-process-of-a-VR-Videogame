@@ -3,11 +3,38 @@
     {
       "levelNumber": 1,
       "spawns": [
-        { "spotIndex": 1, "isMole": true },
-        { "spotIndex": 2, "isMole": false },
-        { "spotIndex": 3, "isMole": true },
-        { "spotIndex": 4, "isMole": false },
-        { "spotIndex": 5, "isMole": true }
+        {
+          "spotIndex": 1,
+          "isMole": true
+        },
+        {
+          "spotIndex": 3,
+          "isMole": false
+        },
+        {
+          "spotIndex": 5,
+          "isMole": true
+        },
+        {
+          "spotIndex": 2,
+          "isMole": true
+        },
+        {
+          "spotIndex": 6,
+          "isMole": true
+        },
+        {
+          "spotIndex": 1,
+          "isMole": false
+        },
+        {
+          "spotIndex": 4,
+          "isMole": true
+        },
+        {
+          "spotIndex": 6,
+          "isMole": true
+        }
       ],
       "spawnSpeed": 1.2,
       "lifeTime": 2.0
@@ -15,10 +42,40 @@
     {
       "levelNumber": 2,
       "spawns": [
-        { "spotIndex": 1, "isMole": true },
-        { "spotIndex": 3, "isMole": true }
+        {
+          "spotIndex": 1,
+          "isMole": true
+        },
+        {
+          "spotIndex": 3,
+          "isMole": true
+        },
+        {
+          "spotIndex": 6,
+          "isMole": true
+        },
+        {
+          "spotIndex": 2,
+          "isMole": false
+        },
+        {
+          "spotIndex": 1,
+          "isMole": true
+        },
+        {
+          "spotIndex": 6,
+          "isMole": true
+        },
+        {
+          "spotIndex": 3,
+          "isMole": false
+        },
+        {
+          "spotIndex": 6,
+          "isMole": false
+        }
       ],
-      "spawnSpeed": 1.0,
+      "spawnSpeed": 0.7,
       "lifeTime": 0.7
     }
   ]
